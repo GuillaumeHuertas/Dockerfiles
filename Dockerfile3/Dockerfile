@@ -7,11 +7,19 @@ MAINTAINER Guillaume Huertas <guillaumehuertas@free.fr>
 # Mise-à-jour et installation des derniers paquets
 RUN apt-get update \
 && apt-get -y upgrade \
-&& apt-get install -y git openjdk-8-jdk maven \
-&& apt-get install -y curl software-properties-common \
-&& curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-&& npm install -g npm@latest \
-&& npm install -g @angular/cli
+&& apt-get install -y git openjdk-8-jdk maven
+
+
+
+
+
+RUN apt-get install -y curl software-properties-common \
+&& curl -sL https://deb.nodesource.com/setup_10.x | bash - 
+
+RUN apt-get install nodejs -y 
+RUN npm install -g -y npm@latest
+ ## Reprendre ici
+RUN echo "yes" | npm install -g -y @angular/cli
 
 
 # Change le mot de passe du Super Utilisateur 
